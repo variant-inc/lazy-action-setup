@@ -1,0 +1,13 @@
+name: "Setup Action"
+description: "Sets up all the required env variables to be used by others"
+outputs:
+  image-version:
+    description: "Image Version"
+    value: ${{ steps.setup.outputs.image-version }}
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        https://raw.githubusercontent.com/GitTools/actions/main/dist/github/gitversion/execute/bundle.js
+      id: setup
