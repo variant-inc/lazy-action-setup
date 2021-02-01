@@ -8,6 +8,15 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      run: |
-        https://raw.githubusercontent.com/GitTools/actions/main/dist/github/gitversion/execute/bundle.js
+      run: ${{ github.action_path }}/entrypoint.sh
+    - shell: pwsh
       id: setup
+      run: |
+        $versionNumber = "${env:GITVERSION_NUGETVERSION}.${env:GITHUB_RUN_NUMBER}"
+        Write-Host "Setting environment variable IMAGE_VERSION to: $versionNumber"
+        echo "::set-output name=image-version::$versionNumber"
+        Add-Content -Path ${env:GITHUB_ENV} -Encoding utf8 -Value "IMAGE_VERSION=$versionNumber"
+
+        $SONAR_PROJECT_KEY = $(${env:GITHUB_REPOSITORY} -replace "/", "_")
+        Write-Host "Setting environment variable SONAR_PROJECT_KEY to: $SONAR_PROJECT_KEY"
+        Add-Content -Path ${env:GITHUB_ENV} -Encoding utf8 -Value "SONAR_PROJECT_KEY=$SONAR_PROJECT_KEY"
