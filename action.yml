@@ -1,7 +1,7 @@
 name: "Setup Action"
 description: "Sets up all the required env variables to be used by others"
 outputs:
-  image-version:
+  image_version:
     description: "Image Version"
     value: ${{ steps.setup.outputs.image-version }}
 runs:
