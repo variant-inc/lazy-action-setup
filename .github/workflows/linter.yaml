@@ -9,7 +9,7 @@ on:
 jobs:
   lint:
     name: Lint Code Base
-    runs-on: ubuntu-latest
+    runs-on: eks
 
     steps:
       - name: Checkout Code
