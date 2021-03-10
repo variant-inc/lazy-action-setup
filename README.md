@@ -1,6 +1,6 @@
-# Lazy Action Setup
+# Actions Setup
 
-Sets environment variables that will be used by other Lazy Actions
+Sets environment variables that will be used by other Actions
 
 ## Environment Variables
 
